@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/** Author: Mikias Hailu */
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+body {
+	color: #484848;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	display: flex;
+	font-size: 14px;
+	height: 100%;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+div.container {
+	margin: 30px auto;
+	display: flex;
+	align-items: stretch;
+	max-width: 1000px;
+	flex-direction: column;
+}

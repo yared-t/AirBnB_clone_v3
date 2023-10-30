@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/** Author: Mikias hailu */
+header {
+	height: 70px;
+	background-repeat: no-repeat;
+	background-image: url("../images/logo.png");
+	background-position: 20px 50%;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #CCCCCC;
+}

@@ -1,0 +1,95 @@
+@charset "UTF-8";
+/** Author: Mikias Hailu */
+
+.container .places {
+	align-items: stretch;
+	display: flex;
+	flex-flow: row wrap;
+	position: relative;
+	justify-content: space-around;
+	z-index: 1;
+	width: 100%;
+}
+
+.container .places h1 {
+	width: 100%;
+	margin: 30px 0 0 10px;
+	font-size: 30px;
+}
+
+.container .places article {
+	border: 1px solid #FF5A5F;
+	width: 390px;
+	margin: 20px 20px;
+	border-radius: 4px;
+	flex-direction: column;
+	padding: 20px 20px;
+	position: relative;
+	display: flex;
+}
+
+.container .places h2 {
+	flex-grow: 1;
+	font-size: 30px;
+	text-align: center;
+	margin: 10px 0 30px 0;
+}
+
+.container .places .title {
+	flex-direction: row;
+	display: flex;
+}
+
+.container .places .price_by_night {
+	min-width: 60px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	border: 4px solid #FF5A5F;
+	color: #FF5A5F;
+	border-radius: 50%;
+	font-size: 30px;
+}
+
+.container .places .information .max_guest,
+.container .places .information .number_rooms,
+.container .places .information .number_bathrooms {
+	background-position: center 5px;
+	width: 100px;
+	background-repeat: no-repeat;
+	text-align: center;
+	line-height: 25px;
+	padding: 10px 0 0 0;
+}
+
+.container .places .information {
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+}
+
+
+.container .places .user {
+	margin: 20px 0 5px 0;
+}
+
+@media screen and (max-width: 600px) {
+
+	.container .places .information {
+		height: auto;
+	}
+
+	.container .places .price_by_night {
+		height: 40px;
+		font-size: 20px;
+		line-height: 42px;
+		min-width: 40px;
+		top: 3px;
+		right: 3px;
+		text-align: center;
+		border: 2px solid #FF5A5F;
+	}
+}

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/* Author: Mikias hailu */
+
+.container .filters {
+	border: 1px solid #DDDDDD;
+	background-color: #FFFFFF;
+	width: 100%;
+	z-index: 2;
+	height: 70px;
+	flex-direction: row;
+	justify-content: center;
+	border-radius: 4px;
+	display: flex;
+	position: relative;
+}
+
+.container .filters .amenities {
+	width: 25%;
+}
+
+.container .filters .locations {
+	border-right: 1px solid #DDDDDD;
+	width: 25%;
+}
+
+.container .filters button {
+	background-color: #FF5A5F;
+	font-size: 18px;
+	width: 20%;
+	height: 48px;
+	border: none;
+	margin: auto 30px auto auto;
+	border-radius: 4px;
+}
+.container .filters h2 {
+	margin: 10px 0 5px 0;
+	font-size: 16px;
+}
+
+
+.container .filters button:hover {
+	opacity: 0.9;
+}
+
+.container .filters h3 {
+	margin: 12px 0 4px 40px;
+	font-weight: 600;
+}
+
+.container .filters .popover {
+	border: 1px solid #DDDDDD;
+	background-color: #FAFAFA;
+	overflow: scroll;
+	display: none;
+	max-height: 300px;
+	list-style-type: none;
+	border-radius: 4px;
+	margin: 15px -1px 0 -1px;
+	padding: 30px 40px 40px 30px;
+}
+
+.container .filters h4 {
+	font-size: 14px;
+	margin: 7px 0 3px 40px;
+	font-weight: 400;
+}
+
+.container .filters .locations:hover .popover {
+	display: list-item;
+}
+
+.container .filters .amenities:hover .popover {
+	display: list-item;
+}
+
+.container .filters .popover li {
+	margin: 5px 0 5px 0;
+}
+
+.container .filters .popover ul {
+	padding-left: 20px;
+	list-style-type: none;
+}
+
+@media screen and (max-width: 600px) {
+
+	.container .filters {
+		margin: auto;
+		flex-direction: column;
+		height: auto;
+		width: 90%;
+	}
+
+	.container .filters .locations {
+		border-bottom: 1px solid #DDDDDD;
+	}
+
+	.container .filters .locations,
+	.container .filters .amenities {
+		border-bottom: 1px solid #DDDDDD;
+		width: 100%;
+		border-right: none;
+	}
+
+	.container .filters button {
+		margin: 5px auto;
+		width: 80%;
+	}
+
+}
