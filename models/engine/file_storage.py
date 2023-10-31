@@ -1,74 +1,79 @@
 #!/usr/bin/python3
-"""it is used to json files"""
+#Author: MikiasHailu and YaredTsgine
+""" This module will Contain the FileStorage class"""
+
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
 from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
 from models.place import Place
 from models.review import Review
+from models.state import State
+from models.user import User
 
+classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+        "Place": Place, "Review": Review, "State": State, "User": User}
 
 class FileStorage:
-    """used to serializes instances
-    Attributes:
-        __file_path: used to know the oath of json
-        __objects: used to store the objects
-    """
+    """ This class will serializes instances to a JSON file"""
+
     __file_path = "file.json"
     __objects = {}
 
-    def delete(self, obj=None)
-    """used to delete
-        Args:
-            obj: used to store the object
-        """
-        if not obj:
-            return
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        if key in self.__objects:
-            del self.__objects[key]
-            self.save()
-
     def all(self, cls=None):
-        """used to return all
-        Args:
-            cls: used to class the dictionery
-        """
-        if not cls:
-            return self.__objects
-        return {k: v for k, v in self.__objects.items() if type(v) == cls}
+        """This function will return the dictionary __objects"""
+        if cls is not None:
+            new_dict = {}
+            for key, value in self.__objects.items():
+                if cls == value.__class__ or cls == value.__class__.__name__:
+                    new_dict[key] = value
+            return new_dict
+        return self.__objects
 
     def new(self, obj):
-        """used to set the new objects
-        Args:
-            obj: used to storet he object
-        """
-        if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
+        """ This function will sets in __object"""
+        if obj is not None:
+            key = obj.__class__.__name__ + "." + obj.id
             self.__objects[key] = obj
 
     def save(self):
-        """path to json
-        """
-        my_dict = {}
-        for key, value in self.__objects.items():
-            my_dict[key] = value.to_dict()
-        with open(self.__file_path, 'w', encoding="UTF-8") as f:
-            json.dump(my_dict, f)
+        """ This fucntion will serializes __objects to the JSON file"""
+        json_objects = {}
+        for key in self.__objects:
+            json_objects[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, 'w') as f:
+            json.dump(json_objects, f)
 
     def reload(self):
-        """used to note the path of json
-        """
+        """ This fucntion will deserializes the JSON file """
         try:
-            with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                for key, value in (json.load(f)).items():
-                    value = eval(value["__class__"])(**value)
-                    self.__objects[key] = value
-        except FileNotFoundError:
+            with open(self.__file_path, 'r') as f:
+                jo = json.load(f)
+            for key in jo:
+                self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
+        except:
             pass
 
+    def delete(self, obj=None):
+        """ This fucntion will delete obj """
+        if obj is not None:
+            key = obj.__class__.__name__ + '.' + obj.id
+            if key in self.__objects:
+                del self.__objects[key]
+
     def close(self):
-        """used to restore the json"""
+        """ This fucntionw will call the method reload for deserializing the JSON file to objects """
         self.reload()
+
+    def get(self, cls, id):
+        """ This fucntion is a get request """
+        if cls and id:
+            takeObj = '{}.{}'.format(cls, id)
+            everyObj = self.all(cls)
+            return everyObj.get(takeObj)
+        else:
+            return None
+
+    def count(self, cls=None):
+        """ This fucntion is the count fucntion """
+        return (len(self.all(cls)))
