@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""states.py"""
+# Author: MikiasHaliu and YaredTsgie
+""" This module is the state module """
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -9,7 +10,7 @@ from models.amenity import Amenity
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
 def get_amenities():
-    """get amenity information for all amenities"""
+    """ This fucntion will get amenity information for all amenities"""
     amenities = []
     for amenity in storage.all("Amenity").values():
         amenities.append(amenity.to_dict())
@@ -17,9 +18,9 @@ def get_amenities():
 
 
 @app_views.route('/amenities/<string:amenity_id>', methods=['GET'],
-                 strict_slashes=False)
+        strict_slashes=False)
 def get_amenity(amenity_id):
-    """get amenity information for specified amenity"""
+    """ This fucntion will get amenity information for specified amenity"""
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)
@@ -27,9 +28,9 @@ def get_amenity(amenity_id):
 
 
 @app_views.route('/amenities/<string:amenity_id>', methods=['DELETE'],
-                 strict_slashes=False)
+        strict_slashes=False)
 def delete_amenity(amenity_id):
-    """deletes an amenity based on its amenity_id"""
+    """ This funciton will deletes an amenity based on its amenity_id"""
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)
@@ -51,9 +52,9 @@ def post_amenity():
 
 
 @app_views.route('/amenities/<string:amenity_id>', methods=['PUT'],
-                 strict_slashes=False)
+        strict_slashes=False)
 def put_amenity(amenity_id):
-    """update an amenity"""
+    """ This fucntion will update an amenity"""
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)

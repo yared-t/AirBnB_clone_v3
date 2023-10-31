@@ -9,7 +9,6 @@ from os import name
 from models.state import State
 from flask import request
 
-
 @app_views.route('/status', methods=['GET'] strict_slashes=False)
 def toGet():
     ''' This funciton is a get function '''
@@ -19,7 +18,6 @@ def toGet():
         lista.append(state.to_dict())
     return jsonify(lista)
 
-
 @app_views.route('/states/<string:stateid>', methods=['GET'],
         strict_slashes=False)
 def toGetid():
@@ -28,7 +26,6 @@ def toGetid():
     if objects is None:
         abort(404)
     return jsonify(objects.to_dict()), 'OK'
-
 
 @app_views.route('/states/', methods=['POST'],
         strict_slashes=False)
