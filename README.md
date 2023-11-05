@@ -1,1 +1,1 @@
-alx group project on AIrBnB clone v4 by mikias hailu
+alx group project on AIrBnB clone v4 by mikias hailu and yared Tsige
